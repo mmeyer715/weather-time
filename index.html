@@ -21,14 +21,14 @@
                 <div id="search" class="whatCity col-md-3 d-flex flex-column w-100">
                     <h4>Search for a City:</h4>
                     <input type="text" id="cityInput" class="mb-2 p-2" placeholder="Type City Here" />
-                    <button>Search</button>
+                    <button onclick="current()">Search</button>
                     <div class="cityList w-100">
                         <ul id="saveCities"></ul>
                     </div>
                 </div>
                 <div class="now col-md-9">
                     <div id="current" class="weather border border-dark w-100" style="padding-bottom: 250px">
-                        <h4>Weather goes here.</h4>
+                        
                     </div>
                     <div class="m-2">
                         <h3>5-Day Forecast:</h3>
@@ -36,5 +36,7 @@
                 </div>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="./script.js"></script>
     </body>
 </html>
