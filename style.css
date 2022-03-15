@@ -1,4 +1,25 @@
 header {
-    background-color: darkblue;
-    margin: 23px;
+    
+    background-image: linear-gradient(to right, lightblue, darkblue);
+}
+
+.container {
+    display: inline-flex;
+}
+
+.whatCity h4 {
+    font-weight: bold;
+}
+
+.whatCity button {
+    background-color: lightblue;
+    border-radius: 6px;
+}
+
+.whatCity input {
+    border-radius: 6px;
+}
+
+.cityList {
+    border-bottom: grey solid 2px;
 }
