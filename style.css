@@ -29,7 +29,7 @@ header {
     margin-bottom: 5px;
 }
 
-.fiveDay {
-    color: white;
+.forecast p{
     background-color: slategray;
+    color: white;
 }

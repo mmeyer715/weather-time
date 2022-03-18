@@ -1,5 +1,6 @@
 // creating variables
 const currWeather = document.getElementById('current');
+const futureForecast = document.querySelector('.forecast');
 const apiKey = 'f23550b18591f7fe101ff3e67461858b';
 const startBtn = document.getElementById('getWeather');
 
@@ -23,11 +24,11 @@ function current(cityName) {
         // defining what elements will be pulled from data
         .then(function(data) {
             console.log(data);
-            currWeather.innerHTML = ''
-            const { main, name, weather, wind, coord } = data;
-            const icon = `https://openweathermap.org/img/wn/${
+            currWeather.innerHTML = '';
+            var { main, name, weather, wind, coord } = data;
+            var icon = `https://openweathermap.org/img/wn/${
                 weather[0]["icon"]
-            }@2x.png`;
+                }@2x.png`;
             const div1 = document.createElement('div');
             div1.classList.add('weatherInfo')
             const edit = `
@@ -63,8 +64,9 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         return response.json();
     })
     .then(function(data) {
+        futureForecast.innerHTML = ''
         console.log(data);
-        var main = document.querySelector('.weatherInfo')
+        var main = document.querySelector('.weatherInfo');
         var index = document.createElement('div');
         var uvi = data.current.uvi;
         index.innerHTML = uvi;
@@ -72,11 +74,17 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
 
         for (var i = 0; i < data.daily.length; i++)
         if (i <= 5 && i > 0) {
-            var futureForecast = document.querySelector('.forecast');
             var p = document.createElement('p');
             var upcoming = `
+            <img src="http://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png"/>
             <p>
             Temp: ${Math.round(data.daily[i].temp.day)} °F
+            </p>
+            <p>
+            Wind: ${data.daily[i].wind_speed} MPH
+            </p>
+            <p>
+            Humidity: ${data.daily[i].humidity}%
             </p>
             `;
             p.innerHTML = upcoming;
