@@ -73,10 +73,15 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         for (var i = 0; i < data.daily.length; i++)
         if (i <= 5 && i > 0) {
             var futureForecast = document.querySelector('.forecast');
-            var p = document.createElement('p')
-            
+            var p = document.createElement('p');
+            var upcoming = `
+            <p>
+            Temp: ${Math.round(data.daily[i].temp.day)} °F
+            </p>
+            `;
+            p.innerHTML = upcoming;
+            futureForecast.appendChild(p);
         }
-
     });
 }
 
