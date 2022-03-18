@@ -21,5 +21,15 @@ header {
 }
 
 .list {
-    border-bottom: grey solid 2px;
+    border-top: grey solid 2px;
+}
+
+.list button {
+    background-color: gray;
+    margin-bottom: 5px;
+}
+
+.fiveDay {
+    color: white;
+    background-color: slategray;
 }

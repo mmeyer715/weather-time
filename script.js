@@ -8,7 +8,6 @@ function cityList(cityName) {
     var city = document.createElement('button');
     var savedCities = document.getElementById('savedCities');
     city.innerHTML = cityName;
-    city.addEventListener('click', getCurrentWeather)
     savedCities.appendChild(city);
 }
 
@@ -25,15 +24,15 @@ function current(cityName) {
         .then(function(data) {
             console.log(data);
             currWeather.innerHTML = ''
-            const { main, name, sys, weather, wind, coord } = data;
+            const { main, name, weather, wind, coord } = data;
             const icon = `https://openweathermap.org/img/wn/${
                 weather[0]["icon"]
             }@2x.png`;
             const div1 = document.createElement('div');
             div1.classList.add('weatherInfo')
             const edit = `
-            <h2 data-name="${name},${sys.country}">
-                <span>${name}</span>${sys.country}
+            <h2 >
+                <span>${name}</span>
             </h2>
             <div> 
             Temp: ${Math.round(main.temp)} °F
@@ -56,9 +55,9 @@ function current(cityName) {
         })
 }
 
-
+// getting uv index
 function latLon(lat, lon) {
-var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=minutely,hourly,alerts&appid=' + apiKey;
+var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=minutely,hourly,alerts&units=imperial&appid=' + apiKey;
     fetch(fiveDay)
     .then(function(response) {
         return response.json();
@@ -71,11 +70,14 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         index.innerHTML = uvi;
         main.appendChild(index);
 
-    })
-}
+        for (var i = 0; i < data.daily.length; i++)
+        if (i <= 5 && i > 0) {
+            var futureForecast = document.querySelector('.forecast');
+            var p = document.createElement('p')
+            
+        }
 
-function getCurrentWeather() {
-    console.log('click');
+    });
 }
 
 startBtn.addEventListener('click', function(){
