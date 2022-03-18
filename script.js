@@ -13,7 +13,6 @@ function cityList(cityName) {
 }
 
 //pulling data about users inputed city
-// needs city name in parameter for function work
 function current(cityName) {
     cityList(cityName);
     var cityInfo = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
@@ -68,7 +67,7 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         console.log(data);
         var main = document.querySelector('.weatherInfo');
         var index = document.createElement('div');
-        var uvi = data.current.uvi;
+        var uvi = `UV Index: ${data.current.uvi}`;
         index.innerHTML = uvi;
         main.appendChild(index);
 
