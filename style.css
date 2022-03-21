@@ -29,8 +29,8 @@ header {
     margin-bottom: 5px;
 }
 
-.weatherInfo div {
-    
+.weatherInfo {
+    font-size: larger;
 }
 
 .forecast {

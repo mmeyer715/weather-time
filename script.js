@@ -31,9 +31,9 @@ function current(cityName) {
             const div1 = document.createElement('div');
             div1.classList.add('weatherInfo');
             const edit = `
-            <h2 >
+            <h1>
                 <span>${name}</span>
-            </h2>
+            </h1>
             <div> 
             Temp: ${Math.round(main.temp)} °F
             </div>
@@ -47,14 +47,14 @@ function current(cityName) {
             div1.innerHTML = edit;
             currWeather.appendChild(div1)
             
-            // adding date to current weather
+            // adding date and icon to current weather
             var icons = `<figure>
             <img src=${icon} alt=${weather[0]["main"]}>
             `;
             var timestamp = `${data.dt}`
             var date = new Date(timestamp*1000).toLocaleDateString('en-US');
             var currDate = document.createElement('div');
-            currDate.classList.add('dateIcon');
+            currDate.classList.add('row','ml-2','h3');
             currDate.innerHTML = date + icons;
             currWeather.appendChild(currDate);
 
@@ -78,8 +78,16 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         index.innerHTML = uvi;
         main.appendChild(index);
 
+
+        // creating five day forecast
         for (var i = 0; i < data.daily.length; i++)
         if (i <= 5 && i > 0) {
+            // adding dates to forecast
+
+            var tsForecast = `${data.daily[i].dt}`
+            var dtForecast = new Date(tsForecast*1000).toLocaleDateString('en-US');
+
+
             var p = document.createElement('p');
             var upcoming = `
             <img src="http://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png"/>
@@ -93,7 +101,7 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
             Humidity: ${data.daily[i].humidity}%
             </p>
             `;
-            p.innerHTML = upcoming;
+            p.innerHTML = dtForecast + upcoming;
             futureForecast.appendChild(p);
         }
     });
