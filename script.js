@@ -15,7 +15,7 @@ function cityList(cityName) {
 //pulling data about users inputed city
 function current(cityName) {
     cityList(cityName);
-    var cityInfo = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
+    var cityInfo = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
     fetch(cityInfo)
         .then(function(response) {
             return response.json();
