@@ -74,9 +74,28 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         console.log(data);
         var main = document.querySelector('.weatherInfo');
         var index = document.createElement('div');
-        var uvi = `UV Index: ${data.current.uvi}`;
-        index.innerHTML = uvi;
+        var indexColor = document.createElement('div');
+        var uvi = `${data.current.uvi}`;
+        index.innerHTML = 'UV Index:';
+        indexColor.innerHTML = uvi
+        // adding uv index color ranges
+        if (`${data.current.uvi}` <= 2) {
+            indexColor.style.backgroundColor = 'green';
+        }
+        if (`${data.current.uvi}` >= 3 && `${data.current.uvi}` <= 5) {
+            indexColor.style.backgroundColor = 'yellow';
+        }
+        if (`${data.current.uvi}` >= 6 && `${data.current.uvi}` <= 7) {
+            indexColor.style.backgroundColor = 'orange';
+        }
+        if (`${data.current.uvi}` >= 8 && `${data.current.uvi}` <= 10) {
+            indexColor.style.backgroundColor = 'red'
+        }
+        if (`${data.current.uvi}` >= 11) {
+            indexColor.style.backgroundColor = 'purple';
+        }
         main.appendChild(index);
+        main.appendChild(indexColor);
 
 
         // creating five day forecast
