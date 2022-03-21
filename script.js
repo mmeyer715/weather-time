@@ -29,7 +29,7 @@ function current(cityName) {
                 weather[0]["icon"]
                 }@2x.png`;
             const div1 = document.createElement('div');
-            div1.classList.add('weatherInfo')
+            div1.classList.add('weatherInfo');
             const edit = `
             <h2 >
                 <span>${name}</span>
@@ -43,14 +43,21 @@ function current(cityName) {
             <div>
             Humidity: ${main.humidity} %
             </div>
-            <figure>
-            <img src=${icon} alt=${weather[0]["main"]}>
-            <figcaption>${weather[0]["description"]}</figcaption>
-            </figure>
             `;
-            // appending html
             div1.innerHTML = edit;
             currWeather.appendChild(div1)
+            
+            // adding date to current weather
+            var icons = `<figure>
+            <img src=${icon} alt=${weather[0]["main"]}>
+            `;
+            var timestamp = `${data.dt}`
+            var date = new Date(timestamp*1000).toLocaleDateString('en-US');
+            var currDate = document.createElement('div');
+            currDate.classList.add('dateIcon');
+            currDate.innerHTML = date + icons;
+            currWeather.appendChild(currDate);
+
             latLon(coord.lat, coord.lon);
         })
 }
