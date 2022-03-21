@@ -4,12 +4,21 @@ const futureForecast = document.querySelector('.forecast');
 const apiKey = 'f23550b18591f7fe101ff3e67461858b';
 const startBtn = document.getElementById('getWeather');
 
+startBtn.addEventListener('click', function(){
+    var userCity = document.getElementById('cityInput').value;
+    current(userCity);
+})
+
 // creating list of user city inputs
 function cityList(cityName) {
-    var city = document.createElement('button');
+    const city = document.createElement('button');
     var savedCities = document.getElementById('savedCities');
     city.innerHTML = cityName;
     savedCities.appendChild(city);
+}
+
+for (var i = 0; i < city.length;) {
+    
 }
 
 //pulling data about users inputed city
@@ -125,8 +134,3 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         }
     });
 }
-
-startBtn.addEventListener('click', function(){
-    var userCity = document.getElementById('cityInput').value;
-    current(userCity);
-})
