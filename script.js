@@ -109,7 +109,7 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
 
             var p = document.createElement('p');
             var upcoming = `
-            <img src="http://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png"/>
+            <img src="https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png"/>
             <p>
             Temp: ${Math.round(data.daily[i].temp.day)} °F
             </p>
