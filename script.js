@@ -3,27 +3,42 @@ const currWeather = document.getElementById('current');
 const futureForecast = document.querySelector('.forecast');
 const apiKey = 'f23550b18591f7fe101ff3e67461858b';
 const startBtn = document.getElementById('getWeather');
+var cityArray = [];
 
 startBtn.addEventListener('click', function(){
     var userCity = document.getElementById('cityInput').value;
     current(userCity);
 })
 
+// pulls user info from local
+function getInfo() {
+    var userInfo = JSON.parse(localStorage.getItem('city'));
+    console.log(userInfo);
+    for (var i = 0; i < userInfo.length; i++) {
+        console.log(userInfo[i]);
+        cityList(userInfo[i]);
+    }
+}
+
 // creating list of user city inputs
 function cityList(cityName) {
+    cityArray.push(cityName);
+    localStorage.setItem('city', JSON.stringify(cityArray));
+    console.log(cityArray);
     const city = document.createElement('button');
     var savedCities = document.getElementById('savedCities');
     city.innerHTML = cityName;
+    city.addEventListener('click', function(event){
+        console.log(event.target.innerHTML);
+        current(event.target.innerHTML);
+    })
     savedCities.appendChild(city);
 }
 
-for (var i = 0; i < city.length;) {
-    
-}
+
 
 //pulling data about users inputed city
 function current(cityName) {
-    cityList(cityName);
     var cityInfo = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
     fetch(cityInfo)
         .then(function(response) {
@@ -32,6 +47,9 @@ function current(cityName) {
         // defining what elements will be pulled from data
         .then(function(data) {
             console.log(data);
+            if (cityArray.includes(data.name) === false) {
+                cityList(data.name); 
+            }
             currWeather.innerHTML = '';
             var { main, name, weather, wind, coord } = data;
             var icon = `https://openweathermap.org/img/wn/${
@@ -134,3 +152,5 @@ var fiveDay = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&l
         }
     });
 }
+
+getInfo();
