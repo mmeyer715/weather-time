@@ -9,6 +9,7 @@ Provide travelers with a convienient source to discover the current and future f
 * JavaScript
 * Bootstrap
 * Open API Call
+* Local Storage
 
 ## Screenshot
 ![screenshot of weather app](./images/screencapture-file-C-Users-mbean-bootcamp-projects-weather-time-index-html-2022-03-20-22_21_39.png)
