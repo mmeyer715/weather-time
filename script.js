@@ -12,10 +12,8 @@ startBtn.addEventListener('click', function(){
 
 // pulls user info from local
 function getInfo() {
-    var userInfo = JSON.parse(localStorage.getItem('city'));
-    console.log(userInfo);
+    var userInfo = localStorage.getItem('city') ? JSON.parse(localStorage.getItem('city')) : [];
     for (var i = 0; i < userInfo.length; i++) {
-        console.log(userInfo[i]);
         cityList(userInfo[i]);
     }
 }
@@ -24,7 +22,6 @@ function getInfo() {
 function cityList(cityName) {
     cityArray.push(cityName);
     localStorage.setItem('city', JSON.stringify(cityArray));
-    console.log(cityArray);
     const city = document.createElement('button');
     var savedCities = document.getElementById('savedCities');
     city.innerHTML = cityName;
